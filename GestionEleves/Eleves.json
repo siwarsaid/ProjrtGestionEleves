@@ -1,0 +1,73 @@
+{
+  "Eleves":[
+    {
+      "Nom": "Said",
+      "Prenom": "Siwar",
+      "Datedenaissance": "1990-01-01",
+      "Resultatsscolaires": [
+        {
+          "Cours": "Mathematiques",
+          "Note": "18/20",
+          "Appreciation": "Continue comme �a !"
+        },
+        {
+          "Cours": "Anglais",
+          "Note": "6/20",
+          "Appreciation": "Aie aie aie, �a va pas du tout..."
+        },
+        {
+          "Cours": "Programmation",
+          "Note": "13/20",
+          "Appreciation": ""
+        }
+      ],
+      "_moyenne": "12.5/20"
+    },
+    {
+      "Nom": "Dupont",
+      "Prenom": "Marie",
+      "Datedenaissance": "1982-02-08",
+      "Resultatsscolaires": [
+        {
+          "Cours": "Mathematiques",
+          "Note": "15/20",
+          "Appreciation": "Bien travaill� !"
+        },
+        {
+          "Cours": "Anglais",
+          "Note": "10/20",
+          "Appreciation": "Peut mieux faire."
+        },
+        {
+          "Cours": "Programmation",
+          "Note": "8/20",
+          "Appreciation": "Doit mettre plus d'efforts."
+        }
+      ],
+      "_moyenne": "11/20"
+    },
+    {
+      "Nom": "Martinez",
+      "Prenom": "Pierre",
+      "Datedenaissance": "1985-10-12",
+      "Resultatsscolaires": [
+        {
+          "Cours": "Mathematiques",
+          "Note": "12/20",
+          "Appreciation": "En progr�s."
+        },
+        {
+          "Cours": "Anglais",
+          "Note": "14/20",
+          "Appreciation": "Tres bien !"
+        },
+        {
+          "Cours": "Programmation",
+          "Note": "16/20",
+          "Appreciation": "Excellent travail !"
+        }
+      ],
+      "_moyenne": "14/20"
+    }
+  ]
+}
