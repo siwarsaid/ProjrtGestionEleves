@@ -9,8 +9,9 @@ namespace GestionEleves
 {
     internal class Menu 
     {
-        public void AfficherMenu(GestionsDesEleves gestionsDesEleves)
+        public void AfficherMenu(GestionsDesEleves gestionsDesEleves, GestionsDesCours gestionsDesCours)
         {
+            Cour cours = new Cour();
             AfficheChoixMenu();
             
             bool choix = true;
@@ -23,7 +24,9 @@ namespace GestionEleves
                 {
                     Console.WriteLine("Option invalide!! Veuillez saisir un nombre(1 ou 2 ou 0");
                     Console.WriteLine("Appuyez sur une touche pour continuer.. ");
+
                     Console.ReadKey();
+
                     Console.Clear();
                     continue;
                 }
@@ -38,13 +41,26 @@ namespace GestionEleves
                     Console.WriteLine("4. Ajouter une note et une appréciation pour un cours sur un élève existant : \n");
                     Console.WriteLine("0. Revenir au menu principal :");
                     Console.Write(" Entez votre choix : ");
-                    Console.ReadLine();
-                    if (option == 1)
-                    {
 
-                        GestionsDesEleves.AfficherListEleves(gestionsDesEleves);
+                   input = Console.ReadLine();
+                   int.TryParse(input, out option);
+                        if (option == 1)
+                        {
 
-                    }
+                           gestionsDesEleves.AfficherListEleves();
+
+                        }
+                        else if (option == 2)
+                        {
+                        gestionsDesEleves.CreerNouvelEleve();
+                        }
+                        else if(option == 3)
+                        {
+                        Console.WriteLine("Entrez l'ID de l'eleve que souhaitez-vous : ");
+                         int idEleve=Int32.Parse( Console.ReadLine());
+
+                        }
+
                 }
 
 
@@ -56,10 +72,29 @@ namespace GestionEleves
                     Console.WriteLine("0. Revenir au menu principal : ");
                     Console.WriteLine();
                     Console.Write(" Entez votre choix : ");
-                    GestionsCours gestionsCours = new GestionsCours();
-                     int choixCours=int.Parse(Console.ReadLine());
 
-                    gestionsCours.AfficherListeCours(choixCours);
+                    GestionsDesCours gestionsCours = new GestionsDesCours();
+                    input= Console.ReadLine();
+                    int.TryParse(input, out option);
+
+                    if(option == 1) 
+                    {
+                        gestionsCours.AfficherListeCours();
+                    }
+                    else if (option == 2)
+                    {
+                      
+                       gestionsCours.AjouterCour();
+                    }
+                    else if (option == 3)
+                    {
+                        Console.Write("Entrez l'ID du cour a supprime : ");
+                        int idCour=Int32.Parse( Console.ReadLine());
+                        gestionsCours.ListeCours.First(c => c.IdCour == idCour);
+                        gestionsCours.DeleteCours(cours);
+                    }
+                      int choixCours=int.Parse(Console.ReadLine());
+                      gestionsCours.AfficherListeCours();
                 }
                 else if (option == 0)
                 {

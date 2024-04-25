@@ -1,73 +1,89 @@
 {
-  "Eleves":[
+  "Eleves": [
     {
+      "IdEleve": 0,
       "Nom": "Said",
       "Prenom": "Siwar",
-      "Datedenaissance": "1990-01-01",
-      "Resultatsscolaires": [
+      "DateDeNaissance": "1990-01-01T00:00:00",
+      "ResultatsScolaires": [
         {
           "Cours": "Mathematiques",
-          "Note": "18/20",
-          "Appreciation": "Continue comme �a !"
+          "Note": 18.0,
+          "Appreciation": "Continue comme ca !",
+          "Moyenne": 0.0
         },
         {
           "Cours": "Anglais",
-          "Note": "6/20",
-          "Appreciation": "Aie aie aie, �a va pas du tout..."
+          "Note": 6.0,
+          "Appreciation": "Aie aie aie, �a va pas du tout...",
+          "Moyenne": 0.0
         },
         {
           "Cours": "Programmation",
-          "Note": "13/20",
-          "Appreciation": ""
+          "Note": 13.0,
+          "Appreciation": "",
+          "Moyenne": 0.0
         }
-      ],
-      "_moyenne": "12.5/20"
+      ]
     },
     {
+      "IdEleve": 0,
       "Nom": "Dupont",
       "Prenom": "Marie",
-      "Datedenaissance": "1982-02-08",
-      "Resultatsscolaires": [
+      "DateDeNaissance": "1982-02-08T00:00:00",
+      "ResultatsScolaires": [
         {
           "Cours": "Mathematiques",
-          "Note": "15/20",
-          "Appreciation": "Bien travaill� !"
+          "Note": 15.0,
+          "Appreciation": "Bien travaill� !",
+          "Moyenne": 0.0
         },
         {
           "Cours": "Anglais",
-          "Note": "10/20",
-          "Appreciation": "Peut mieux faire."
+          "Note": 10.0,
+          "Appreciation": "Peut mieux faire.",
+          "Moyenne": 0.0
         },
         {
           "Cours": "Programmation",
-          "Note": "8/20",
-          "Appreciation": "Doit mettre plus d'efforts."
+          "Note": 8.0,
+          "Appreciation": "Doit mettre plus d'efforts.",
+          "Moyenne": 0.0
         }
-      ],
-      "_moyenne": "11/20"
+      ]
     },
     {
+      "IdEleve": 0,
       "Nom": "Martinez",
       "Prenom": "Pierre",
-      "Datedenaissance": "1985-10-12",
-      "Resultatsscolaires": [
+      "DateDeNaissance": "1985-10-12T00:00:00",
+      "ResultatsScolaires": [
         {
           "Cours": "Mathematiques",
-          "Note": "12/20",
-          "Appreciation": "En progr�s."
+          "Note": 12.0,
+          "Appreciation": "En progr�s.",
+          "Moyenne": 0.0
         },
         {
           "Cours": "Anglais",
-          "Note": "14/20",
-          "Appreciation": "Tres bien !"
+          "Note": 14.0,
+          "Appreciation": "Tres bien !",
+          "Moyenne": 0.0
         },
         {
           "Cours": "Programmation",
-          "Note": "16/20",
-          "Appreciation": "Excellent travail !"
+          "Note": 16.0,
+          "Appreciation": "Excellent travail !",
+          "Moyenne": 0.0
         }
-      ],
-      "_moyenne": "14/20"
+      ]
+    },
+    {
+      "IdEleve": 0,
+      "Nom": "Monblot",
+      "Prenom": "Alex",
+      "DateDeNaissance": "1992-01-10T00:09:00",
+      "ResultatsScolaires": null
     }
   ]
 }

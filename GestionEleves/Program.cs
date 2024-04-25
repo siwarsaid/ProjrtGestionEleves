@@ -10,10 +10,12 @@ namespace GestionEleves
         static void Main(string[] args)
         {
             GestionsDesEleves res;
+            GestionsDesCours gesCour= new GestionsDesCours();
+           
 
             try
             {
-                res = JsonConvert.DeserializeObject<GestionsDesEleves>(File.ReadAllText("Eleves.json"));
+                res = JsonConvert.DeserializeObject<GestionsDesEleves>(File.ReadAllText(JSON.fichierJson));
                 if (res == null)
                 {
                     res = new GestionsDesEleves();
@@ -25,13 +27,13 @@ namespace GestionEleves
                 res = new GestionsDesEleves();
 
             }
-            catch (JsonException)
+            catch (JsonException ex)
             {
-                Console.WriteLine("Erreur de lecture du fichier JSON.");
+                Console.WriteLine("Erreur de lecture du fichier JSON." + ex.Message + " ---- stack ----" + ex.StackTrace);
                 return;
             }
             Menu menuPrincipale = new Menu();
-            menuPrincipale.AfficherMenu(res);
+            menuPrincipale.AfficherMenu(res,gesCour);
         }
 
        
@@ -43,4 +45,10 @@ namespace GestionEleves
 
        
     }
+
+}
+public static class JSON
+{
+    public static string fichierJson = @"C:\Users\Siwar\formation\QuetesC#\GestionEleves\GestionEleves\Eleves.json";
+
 }

@@ -27,26 +27,31 @@ namespace GestionEleves
             DateTime dNaissance;
 
             while(!DateTime.TryParseExact(Console.ReadLine(),"dd/mm/yyyy", null,System.Globalization.DateTimeStyles.None, out dNaissance))
-             {
+            {
                 Console.WriteLine("Format date invalide!! entrez une date de format dd/mm/yyyy SVP!! ");
-             }
+            }
 
             Eleve nouvelEleve = new Eleve { Nom = nom, Prenom = prenom, DateDeNaissance = dNaissance };
             Eleves.Add(nouvelEleve);
+            SauvgarderEleveFichierJSON();
             Console.WriteLine("Nouvel éleve crée avec succès !");
         }
-
-         public static void AfficherListEleves(GestionsDesEleves res)
+        private void SauvgarderEleveFichierJSON()
+        {
+            string json=JsonConvert.SerializeObject(this,Formatting.Indented);
+            File.WriteAllText(JSON.fichierJson,json);
+        }
+         public void AfficherListEleves()
         {
 
             Console.WriteLine("Liste des élèves :");
-            foreach (var eleve in res.Eleves)
+            foreach (var eleve in Eleves)
             {
                 Console.WriteLine($"Nom : {eleve.Nom}, Prénom : {eleve.Prenom}");
             }
             //AfficherListEleves(res);
         }
-         public static void AfficheEleve(GestionsDesEleves res)
+         public void AfficheEleve(GestionsDesEleves res)
         {
             if (res == null || res.Eleves == null)
             {
