@@ -9,22 +9,19 @@ namespace GestionEleves
     {
         static void Main(string[] args)
         {
-            GestionsDesEleves res;
-            GestionsDesCours gesCour= new GestionsDesCours();
-           
-
+            Campus campus;
             try
             {
-                res = JsonConvert.DeserializeObject<GestionsDesEleves>(File.ReadAllText(JSON.fichierJson));
-                if (res == null)
+                campus = JsonConvert.DeserializeObject<Campus>(File.ReadAllText(JSON.fichierJson));
+                if (campus == null)
                 {
-                    res = new GestionsDesEleves();
+                    campus = new Campus();
                 }
             }
             catch (FileNotFoundException)
             {
                 Console.WriteLine("Fichier 'Eleves.json' introuvable");
-                res = new GestionsDesEleves();
+                campus = new Campus();
 
             }
             catch (JsonException ex)
@@ -32,20 +29,25 @@ namespace GestionEleves
                 Console.WriteLine("Erreur de lecture du fichier JSON." + ex.Message + " ---- stack ----" + ex.StackTrace);
                 return;
             }
-            Menu menuPrincipale = new Menu();
-            menuPrincipale.AfficherMenu(res,gesCour);
+
+            MenuPrincipal menuPrincipale = new MenuPrincipal(campus);
+            menuPrincipale.AfficherMenu(campus);
+
+            
+
         }
-
-       
-
-
-      
-
-
-
-       
+        public static void ChargerJson(Campus campus)
+        {
+            if (File.Exists(JSON.fichierJson))
+            {
+                string json=File.ReadAllText(JSON.fichierJson);
+                for(int i = 0; i < campus.Eleves.Count; i++)
+                {
+                     campus.Eleves[i].IdEleve = i + 1; 
+                }
+            }
+        }
     }
-
 }
 public static class JSON
 {

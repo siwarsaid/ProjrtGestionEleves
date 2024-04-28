@@ -10,14 +10,14 @@ namespace GestionEleves
     {
             public int IdCour {  get; set; }
             public string Nom { get; set; }
-            public string Matiere { get; set; }
+            
                   
         public Cour() { }
-        public Cour(int idCour, string nom, string matiere)
+        public Cour(int idCour, string nom)
         {
             IdCour = idCour;
             Nom = nom;
-            Matiere = matiere;
+            
                    }
 
         
