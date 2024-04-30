@@ -43,7 +43,7 @@ namespace GestionEleves
                 string json=File.ReadAllText(JSON.fichierJson);
                 for(int i = 0; i < campus.Eleves.Count; i++)
                 {
-                     campus.Eleves[i].IdEleve = i + 1; 
+                    // campus.Eleves[i].IdEleve = i + 1; 
                 }
             }
         }

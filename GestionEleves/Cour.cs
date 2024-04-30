@@ -18,9 +18,6 @@ namespace GestionEleves
             IdCour = idCour;
             Nom = nom;
             
-                   }
-
-        
-        
+        }  
     }
 }

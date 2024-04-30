@@ -29,6 +29,24 @@
           "Note": 12.0,
           "Appreciation": "dd",
           "Moyenne": 12.5
+        },
+        {
+          "Cours": "espagnol",
+          "Note": 13.0,
+          "Appreciation": "",
+          "Moyenne": 12.25
+        },
+        {
+          "Cours": "espagnol",
+          "Note": 18.0,
+          "Appreciation": "",
+          "Moyenne": 12.5
+        },
+        {
+          "Cours": "francais",
+          "Note": 14.0,
+          "Appreciation": "",
+          "Moyenne": 13.5
         }
       ]
     },
@@ -118,6 +136,95 @@
       "Prenom": "sie",
       "DateDeNaissance": "1990-01-12T00:03:00",
       "ResultatsScolaires": null
+    },
+    {
+      "IdEleve": 0,
+      "Nom": "DD",
+      "Prenom": "EEE",
+      "DateDeNaissance": "1995-01-17T00:10:00",
+      "ResultatsScolaires": null
+    },
+    {
+      "IdEleve": 0,
+      "Nom": "petit",
+      "Prenom": "louise",
+      "DateDeNaissance": "1993-01-14T00:10:00",
+      "ResultatsScolaires": null
+    },
+    {
+      "IdEleve": 0,
+      "Nom": "2",
+      "Prenom": "alexa",
+      "DateDeNaissance": "1994-01-14T00:10:00",
+      "ResultatsScolaires": null
+    },
+    {
+      "IdEleve": 0,
+      "Nom": "gg",
+      "Prenom": "hh",
+      "DateDeNaissance": "1994-01-10T00:12:00",
+      "ResultatsScolaires": null
+    },
+    {
+      "IdEleve": 0,
+      "Nom": "ttt",
+      "Prenom": "sss",
+      "DateDeNaissance": "1995-01-10T00:05:00",
+      "ResultatsScolaires": null
+    }
+  ],
+  "ListeCours": [
+    {
+      "IdCour": 1,
+      "Nom": "Francais"
+    },
+    {
+      "IdCour": 1,
+      "Nom": "fr"
+    },
+    {
+      "IdCour": 1,
+      "Nom": "ang"
+    },
+    {
+      "IdCour": 1,
+      "Nom": "fr"
+    },
+    {
+      "IdCour": 2,
+      "Nom": "frr"
+    },
+    {
+      "IdCour": 3,
+      "Nom": "prog"
+    },
+    {
+      "IdCour": 2,
+      "Nom": "prog"
+    },
+    {
+      "IdCour": 5,
+      "Nom": "FR"
+    },
+    {
+      "IdCour": 1,
+      "Nom": "EE"
+    },
+    {
+      "IdCour": 112,
+      "Nom": "ee"
+    },
+    {
+      "IdCour": 4,
+      "Nom": "2dfg"
+    },
+    {
+      "IdCour": 134,
+      "Nom": "tatoo"
+    },
+    {
+      "IdCour": 45,
+      "Nom": "gg"
     }
   ]
 }

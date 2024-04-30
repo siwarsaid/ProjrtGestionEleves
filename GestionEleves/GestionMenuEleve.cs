@@ -16,7 +16,53 @@
         {
         }
 
-       
+
+        public void AfficherEleve()
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("1. Lister les élèves.");
+            Console.WriteLine("2. Créer un nouvel élève. ");
+            Console.WriteLine("3. Consulter un élève existant.");
+            Console.WriteLine("4. Ajouter une note et une appréciation pour un cours sur un élève existant.");
+
+            RevenirMenuPrincipale();
+
+            Console.Write(" Entez votre choix : ");
+            int option = -1;
+            while (option != 0)
+            {
+                string input = Console.ReadLine();
+
+                int.TryParse(input, out option);
+
+                if (option == 1)
+                {
+                    AfficherListEleves();
+                    RevenirMenuPrincipale();
+                }
+                else if (option == 2)
+                {
+                    CreerNouvelEleve();
+                    RevenirMenuPrincipale();
+
+                }
+                else if (option == 3)
+                {
+
+                    ConsulterEleveId();
+                    RevenirMenuPrincipale();
+                }
+                else if (option == 4)
+                {
+
+                    AjouterNotes();
+                    RevenirMenuPrincipale();
+                }
+
+            }
+        }
+
         public void CreerNouvelEleve()
         {
             Console.WriteLine("Entrez le nom de l'eleve : ");
@@ -185,50 +231,6 @@
             Console.WriteLine("----------------------------------------------------------------------\r\nInformations sur l'élève : ");
             Console.WriteLine() ;
         }
-        public void AfficherEleve()
-        {
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine("1. Lister les élèves.");
-            Console.WriteLine("2. Créer un nouvel élève. ");
-            Console.WriteLine("3. Consulter un élève existant.");
-            Console.WriteLine("4. Ajouter une note et une appréciation pour un cours sur un élève existant.");
-
-            RevenirMenuPrincipale();
-            Console.WriteLine();
-            Console.Write(" Entez votre choix : ");
-            int option=-1;
-            while (option != 0)
-            {
-                string input = Console.ReadLine();
-          
-                int.TryParse(input, out option);
-           
-                if (option == 1)
-                {
-                    AfficherListEleves();
-                    RevenirMenuPrincipale();
-                }
-                else if (option == 2)
-                {
-                    CreerNouvelEleve();
-                    RevenirMenuPrincipale();
-                   
-                }
-                else if (option == 3)
-                {
-
-                    ConsulterEleveId();
-                    RevenirMenuPrincipale();
-                }
-                else if (option == 4)
-                {
-
-                    AjouterNotes();
-                    RevenirMenuPrincipale() ;
-                }
-                
-            }
-        }
+       
     }
 }
