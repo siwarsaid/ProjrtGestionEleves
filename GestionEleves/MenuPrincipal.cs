@@ -18,17 +18,17 @@
             GestionMenuEleve gestionMenuEleve = new GestionMenuEleve(campus);
             GestionsMenuDesCours gestionsDesCours = new GestionsMenuDesCours(campus);
 
-            bool choix = true;
-            while (choix)
+        
+            while (true)
             {
                 string input = Console.ReadLine();
 
                 int option;
                 if (!int.TryParse(input, out option))
                 {
-                    Console.WriteLine("Option invalide!! Veuillez saisir un nombre(1 ou 2 ou 0");
-                    Console.ReadKey();
-                    Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine("Option invalide!! saisir '1' ou '2' ");
+                    //Console.Clear();
                     continue;
                 }
                 if (option == 0)
@@ -59,29 +59,7 @@
             Console.Write("    Entrez votre choix : ");
         }
 
-
-
-        //protected void RevenirMenuPrincipale()
-        //{
-        //    do
-        //    {
-        //        Console.WriteLine();
-        //        Console.WriteLine("0. Revenir au menu principal.");
-        //        string menuPrincipal = Console.ReadLine();
-
-        //        if (menuPrincipal != "0")
-        //        {
-        //            Console.WriteLine("Veuillez appuyer sur la touche '0' pour revenir au menu principal.");
-        //        }
-        //        else
-        //        {
-        //            break; 
-        //        }
-        //    } while (true); 
-        //}
-
-
-
+        
         protected void RevenirMenuPrincipale()
         {
             Console.WriteLine();

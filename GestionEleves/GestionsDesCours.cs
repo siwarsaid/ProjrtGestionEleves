@@ -19,6 +19,7 @@ namespace GestionEleves
 
         public void AfficheMenuCour()
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("1. Lister les cours existants :");
             Console.WriteLine("2. Ajouter un nouveau cours au programme :");
@@ -26,6 +27,8 @@ namespace GestionEleves
             Console.WriteLine("0. Revenir au menu principal : ");
             Console.WriteLine();
             Console.Write(" Entez votre choix : ");
+
+            RevenirMenuPrincipale();
 
             int option = -1;
             while (option != 0)
@@ -55,15 +58,12 @@ namespace GestionEleves
                     SupprimerCourParId();
                     RevenirMenuPrincipale();
                 }
-               
-             
-
             }
-
         }
 
         public void AjouterCour()
         {
+            
             Console.Write("ID du cours : ");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
@@ -95,7 +95,7 @@ namespace GestionEleves
             }
             else
             {
-                Console.WriteLine("Ce cours existe déjà !");
+                Console.WriteLine("Cei ID existe déjà !");
             }
 
         }
@@ -108,11 +108,12 @@ namespace GestionEleves
             if (MonCampus.ListeCours.Count > 0)
             {   
                 Console.Clear();
-                Console.WriteLine("Liste de cours existant : ");
-                Console.WriteLine($" ID :".PadRight(10) + "Nom : ");
+                Console.WriteLine(" Liste de cours existant : \n");
+                Console.WriteLine($" ID:".PadRight(10) + "   Nom:".PadRight(8));
+                Console.WriteLine();
                 foreach (Cour cours in MonCampus.ListeCours)
                 {
-                    Console.WriteLine($"{cours.IdCour.ToString().PadRight(8,' ')}   {cours.Nom}");
+                    Console.WriteLine($" {cours.IdCour.ToString().PadRight(10,' ')}  {cours.Nom}");
                 }
             }
             else
@@ -156,5 +157,8 @@ namespace GestionEleves
         }
 
         
+
+
+
     }
 }

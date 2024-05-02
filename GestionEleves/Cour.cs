@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GestionEleves
 {
     public class Cour
-    {
+    {    
             public int IdCour {  get; set; }
             public string Nom { get; set; }
             

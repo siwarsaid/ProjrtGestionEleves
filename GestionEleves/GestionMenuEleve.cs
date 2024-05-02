@@ -8,10 +8,10 @@
     using System.Runtime.InteropServices.Marshalling;
     using static GestionEleves.Eleve;
 
-    
+
     internal class GestionMenuEleve : MenuPrincipal
     {
-        
+
         public GestionMenuEleve(Campus campus) : base(campus)
         {
         }
@@ -65,6 +65,7 @@
 
         public void CreerNouvelEleve()
         {
+            Console.WriteLine();
             Console.WriteLine("Entrez le nom de l'eleve : ");
             string nom = Console.ReadLine();
 
@@ -90,97 +91,140 @@
             }
             while (!dateValide);
 
-            Eleve nouvelEleve = new Eleve { Nom = nom, Prenom = prenom, DateDeNaissance = dateNaissance };
+            int nextId = 1;
+            if (MonCampus.Eleves.Count() > 0)
+            {
+                nextId = MonCampus.Eleves.Max(e => e.IdEleve) + 1;
+            }
+
+            Eleve nouvelEleve = new Eleve { IdEleve = nextId, Nom = nom, Prenom = prenom, DateDeNaissance = dateNaissance };
 
             MonCampus.Eleves.Add(nouvelEleve);
             MonCampus.SauvgarderEleveFichierJSON();
-            
+            Console.WriteLine();
             Console.WriteLine("Nouvel éleve crée avec succès ! \n");
 
         }
 
-       
+
         public void AfficherListEleves()
         {
             Console.Clear();
-            Console.WriteLine("Liste des élèves :\n");
-            Console.WriteLine($"ID :".PadRight(10) + "Nom : ".PadRight(18) + " Prénom : \n");
-            foreach (var eleve in MonCampus.Eleves)
+            Console.WriteLine(" Liste des élèves :\n");
+            if (MonCampus.Eleves == null || MonCampus.Eleves.Count == 0)
             {
-                Console.WriteLine($"{eleve.IdEleve.ToString().PadRight(8, ' ')}   {eleve.Nom.PadRight(10, ' ')}         {eleve.Prenom}");//aligner les prenoms
+                Console.WriteLine("Aucun éleve dans la liste.");
             }
-            
+            else
+            {
+                Console.WriteLine($" ID :".PadRight(10) + "   Nom : ".PadRight(20) + "  Prénom : \n");
+                foreach (var eleve in MonCampus.Eleves)
+                {
+                    if (eleve != null)
+                    {
+                        Console.WriteLine($" {eleve.IdEleve.ToString().PadRight(8, ' ')}    {eleve.Nom.PadRight(10, ' ')}         {eleve.Prenom}");//aligner les prenoms
+                    }
+
+                }
+            }
         }
 
-        public void AjouterResultatScolaire(Eleve eleve,string cours, double note, string appreciation,double moyenne)
+        public void AjouterResultatScolaire(Eleve eleve, string cours, double note, string appreciation, double moyenne)
         {
-           
+
             if (eleve.ResultatsScolaires == null)
             {
                 eleve.ResultatsScolaires = new List<Eleve.ResultatScolaire>();
             }
 
-            ResultatScolaire nouveauResultat = new ResultatScolaire(cours, note, appreciation,moyenne)
+            ResultatScolaire nouveauResultat = new ResultatScolaire(cours, note, appreciation, moyenne)
             {
                 Cours = cours,
                 Note = note,
                 Appreciation = appreciation,
                 Moyenne = moyenne
             };
-              eleve.ResultatsScolaires.Add(nouveauResultat);
+            eleve.ResultatsScolaires.Add(nouveauResultat);
             Console.WriteLine();
             Console.WriteLine("Note ajoutée avec succée.");
         }
+
         public void AjouterNotes()
         {
-            Console.Write("Entez l'ID de l'eleve pour ajouter une note : ");
-            string input=Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(input))
+            Eleve eleve = null;
+            int ideleve;
+            do
             {
-                Console.Write("Veuillez entrer l'ID de l'eleve !");
-                return;
-            }
+                Console.Write("Entrez l'ID de l'élève : ");
+                string input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Veuillez entrer l'ID de l'élève !\n");
+                    continue;
+                }
+
+                if (!int.TryParse(input, out ideleve))
+                {
+                    Console.WriteLine("L'ID entré n'est pas valide. Veuillez entrer un nombre entier.\n");
+                    continue;
+                }
+
+                 eleve = MonCampus.Eleves.FirstOrDefault(e => e.IdEleve == ideleve);
+                if (eleve == null)
+                {
+                    Console.WriteLine("Aucun élève trouvé avec cet ID.");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
             
-            if (!int.TryParse(input, out int ideleve))
+            if(eleve== null)
             {
-                Console.WriteLine("L'ID entrer n'est pas valide!! Entrez un nombre.");
+                Console.WriteLine("Il n'y a aucun éleve dans la liste.\n");
                 return;
             }
-            Console.WriteLine();
-
-            Eleve eleve=MonCampus.Eleves.FirstOrDefault(e => e.IdEleve == ideleve);
-            if(eleve == null)
+            else
             {
-                Console.WriteLine("Aucun élève trouvé avec cet ID.");
-                Console.WriteLine();
-                return;
+                bool courExist = false;
+                do
+                {
+                    Console.Write("Entrez le nom du cours pour saisir une note : ");
+                    string cours = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(cours))
+                    {
+                        Console.Write("Veuillez entrer le nom du cours ! \n");
+                        continue;
+                    }
+                    courExist = MonCampus.ListeCours.Any(c => c.Nom.ToLower() == cours.ToLower());
+
+                    if (!courExist)
+                    {
+                        Console.WriteLine(" Ce cour n'existe pas !!  ");
+
+                    }
+                    else
+                    {
+                        Console.Write("Ajoutez la note : ");
+                        double note;
+                        while (!double.TryParse(Console.ReadLine(), out note) || note < 0 || note > 20)
+                        {
+
+                            Console.WriteLine(" Veuillez entrer une note valide entre 0 et 20!!");
+                        }
+
+                        Console.Write("Ajouter une appreciation (facultative) : ");
+                        string appreciation = Console.ReadLine();
+                        double moyenne = eleve.CalcMoyenne();
+                        AjouterResultatScolaire(eleve, cours, note, appreciation, moyenne);
+                        MonCampus.SauvgarderEleveFichierJSON();
+                        break; //sortor de la boucle si l'ajout de note sera effectuee avec succ
+                    }
+                }
+                while (true);
             }
-
-            Console.Write("Entrez le nom du cours pour saisir une note : ");
-            
-               string cours = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(cours))
-            {
-                Console.Write("Veuillez entrer le nom du cours !");
-                return;
-            }
-            Console.WriteLine(); 
-
-            Console.Write("Ajoutez la note : ");
-            double note;
-            while (!double.TryParse(Console.ReadLine(), out note) || note<0 || note>20)
-            {
-                        
-                Console.WriteLine(" Veuillez entrer une note valide entre 0 et 20!!");
-            }
-
-            Console.Write("Ajouter une appreciation (facultative) : ");
-            string appreciation = Console.ReadLine();
-           double moyenne= eleve.CalcMoyenne();
-            AjouterResultatScolaire(eleve,cours, note,appreciation,moyenne);
-            MonCampus.SauvgarderEleveFichierJSON();
-
-            
         }
         public void ConsulterEleveId()
         {
@@ -192,14 +236,14 @@
                 Console.WriteLine("Aucun éleve à afficher ");
                 return;
             }
-          
+
             var eleve = MonCampus.Eleves.FirstOrDefault(e => e.IdEleve == ideleve);
-           if(eleve == null)
-           {
+            if (eleve == null)
+            {
                 Console.WriteLine("Aucun eleve trouve avec cet ID \n");
 
                 return;
-           }
+            }
             Console.WriteLine("----------------------------------------------------------------------\r\nInformations sur l'élève : ");
             Console.WriteLine();
             Console.WriteLine($"Nom               : {eleve.Nom}");
@@ -213,23 +257,26 @@
             Console.WriteLine();
             if (eleve.ResultatsScolaires == null || eleve.ResultatsScolaires.Count == 0)
             {
+                Console.WriteLine("Aucun resultat scolaire disponible pour cet eleve");
+            }
+            if (eleve.ResultatsScolaires != null) 
+            { 
 
-            } Console.WriteLine("Aucun resultat scolaire disponible poue cet eleve");
-
-            foreach (var resultat in eleve.ResultatsScolaires)
-            {
+               foreach (var resultat in eleve.ResultatsScolaires)
+               {
                 Console.WriteLine($"     Cours : {resultat.Cours}");
                 Console.WriteLine($"        Note : {resultat.Note}");
                 Console.WriteLine($"        Appréciation : {resultat.Appreciation}");
-                Console.WriteLine(); 
-            }
+                Console.WriteLine();
+               }
             eleve.CalcMoyenne();
             Console.WriteLine($"     Moyenne : {eleve.CalcMoyenne()}");
             Console.WriteLine();
             MonCampus.SauvgarderEleveFichierJSON();
             Console.WriteLine();
-            Console.WriteLine("----------------------------------------------------------------------\r\nInformations sur l'élève : ");
-            Console.WriteLine() ;
+            Console.WriteLine("----------------------------------------------------------------------");
+            Console.WriteLine();
+            }
         }
        
     }
